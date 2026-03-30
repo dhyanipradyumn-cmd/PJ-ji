@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pragya Joshi — Lead Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F4EF;
+    --ink: #1A1814;
+    --ink-light: #6B6660;
+    --accent: #C17D52;
+    --accent-pale: #EEE0D3;
+    --rule: #DDD8D0;
+    --serif: 'Cormorant Garant', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5vw;
+    background: rgba(247, 244, 239, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-color: var(--rule); }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 4rem 5vw; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--serif);
+    font-size: clamp(5rem, 14vw, 12rem);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--rule);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.6;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-role {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 3vw, 2.2rem);
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--ink);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+  }
+  .hero-cta:hover { background: var(--ink); color: var(--cream); }
+  .hero-cta .arrow { transition: transform 0.25s; }
+  .hero-cta:hover .arrow { transform: translateX(4px); }
+  .hero-meta {
+    position: absolute;
+    right: 5vw;
+    bottom: 3rem;
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    line-height: 2;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 5vw;
+    width: calc(100% - 10vw);
+  }
+
+  /* ABOUT */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  h2.section-title em { font-style: italic; color: var(--accent); }
+  .about-body p {
+    font-size: 1.05rem;
+    color: #3D3A35;
+    line-height: 1.9;
+    margin-bottom: 0.75rem;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .stat-item {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+  .about-aside {
+    padding-top: 0.5rem;
+  }
+  .profile-visual {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--accent-pale);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .availability {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--ink-light);
+  }
+  .avail-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5DB075;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--ink); color: var(--cream); }
+  #experience .section-label { color: var(--accent); }
+  #experience .section-label::before { background: var(--accent); }
+  #experience h2.section-title { color: var(--cream); }
+  .exp-list { margin-top: 2rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr auto;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(247,244,239,0.12);
+    align-items: start;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .exp-item:last-child { border-bottom: 1px solid rgba(247,244,239,0.12); }
+  .exp-period {
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.45);
+    letter-spacing: 0.05em;
+    padding-top: 0.2rem;
+  }
+  .exp-company {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.35rem;
+    line-height: 1.2;
+  }
+  .exp-role {
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+  }
+  .exp-desc {
+    font-size: 0.9rem;
+    color: rgba(247,244,239,0.6);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(247,244,239,0.2);
+    color: rgba(247,244,239,0.5);
+    white-space: nowrap;
+  }
+
+  /* PROJECTS */
+  #projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .project-card {
+    cursor: pointer;
+    group: project;
+  }
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--accent-pale);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; background:#f7f4ef;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .project-card:hover .project-thumb img { transform: scale(1.04); }
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+  .project-cat {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .project-year {
+    font-size: 0.75rem;
+    color: var(--ink-light);
+  }
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+
+  /* SKILLS */
+  #skills .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    align-items: start;
+  }
+  .skills-intro {
+    font-size: 1.05rem;
+    color: #3D3A35;
+    line-height: 1.9;
+  }
+  .skills-intro strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .skills-groups { display: flex; flex-direction: column; gap: 1.5rem; }
+  .skill-group-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .skill-pill {
+    font-size: 0.82rem;
+    padding: 0.45rem 1.1rem;
+    background: white;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .skill-pill:hover { border-color: var(--accent); background: var(--accent-pale); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem 5vw 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    border-bottom: 1px solid rgba(247,244,239,0.12);
+    padding-bottom: 3rem;
+    margin-bottom: 1rem;
+  }
+  .footer-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.25;
+  }
+  .footer-tagline em { font-style: italic; color: var(--accent); }
+  .footer-contact { text-align: right; }
+  .footer-contact a {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(247,244,239,0.3);
+    padding-bottom: 0.25rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .footer-contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.35);
+  }
+
+  /* REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .reveal.hidden {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    #about .about-grid { grid-template-columns: 1fr; }
+    .about-aside { display: none; }
+    #projects .projects-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .exp-tags { display: none; }
+    #skills .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-contact { text-align: left; }
+    .nav-links { display: none; }
+    .hero-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">Pragya Joshi</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#projects">Work</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">Design</div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">Lead Designer &amp; Visual Strategist</div>
+    <h1 class="hero-name">Pragya <em>Joshi</em></h1>
+    <p class="hero-role">Crafting identities, experiences &amp; moments that endure.</p>
+    <a class="hero-cta" href="#projects">View selected work <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-meta">
+    Based in Gurugram, India<br />
+    Open to opportunities
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-aside reveal">
+      <div class="profile-visual"><img src="assets/img_01.jpg" alt="Pragya Joshi" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" /></div>
+      <div class="availability">
+        <span class="avail-dot"></span>
+        Available for freelance projects
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="section-label reveal">About me</div>
+      <h2 class="section-title reveal reveal-delay-1">A designer who thinks<br /><em>before</em> drawing.</h2>
+      <p class="reveal reveal-delay-2">
+        I'm a multidisciplinary creative designer with over 6 years of experience building
+        brands, campaigns, and digital products for organisations ranging from early-stage
+        startups to established enterprises across India and beyond.
+      </p>
+      <p class="reveal reveal-delay-2">
+        My work lives at the intersection of visual craft and strategic thinking — every
+        colour choice, typeface, and layout decision is grounded in a clear communication
+        objective. I believe great design should feel inevitable.
+      </p>
+      <div class="about-stats reveal reveal-delay-3">
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Organisations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Industries</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Internships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal">Work experience</div>
+    <h2 class="section-title reveal reveal-delay-1">Where I've shaped<br /><em>ideas into reality.</em></h2>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Feb 2023 — Present<br /><span style="opacity:0.4;font-size:0.72rem;">3 yrs 2 mos · Promoted</span></div>
+        <div>
+          <div class="exp-company">L.E.K. Consulting</div>
+          <div class="exp-role">Lead Graphic Designer (promoted from Graphic Designer) · Gurugram, Hybrid</div>
+          <div class="exp-desc">
+            Delivered 150+ design requests and 644 pages in five months — spanning multilingual publications, financial pitch decks, Executive Insights, and global event campaigns. Built proprietary social media templates that cut turnaround time by ~90%, managed all brand social design independently, and led workflow calls in the manager's absence. Mentored interns and junior designers, performed 40+ quality checks, and supported cross-team collaboration with LCN and KM teams.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Promoted</span>
+          <span class="tag">Publications</span>
+          <span class="tag">Social Media</span>
+          <span class="tag">Team Lead</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Aug 2021 — Feb 2023<br /><span style="opacity:0.4;font-size:0.72rem;">1 yr 7 mos</span></div>
+        <div>
+          <div class="exp-company">FableStreet</div>
+          <div class="exp-role">Graphic Designer · Gurugram, Full-time</div>
+          <div class="exp-desc">
+            Shaped the visual identity of a leading D2C women's workwear brand —
+            spanning digital campaigns, e-commerce assets, social media, and
+            seasonal lookbook design.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">D2C</span>
+          <span class="tag">Digital Campaigns</span>
+          <span class="tag">Social Media</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Sep 2020 — Aug 2021<br /><span style="opacity:0.4;font-size:0.72rem;">1 yr</span></div>
+        <div>
+          <div class="exp-company">Belora Cosmetics</div>
+          <div class="exp-role">Graphic Designer · Gurugram, Full-time</div>
+          <div class="exp-desc">
+            Developed packaging, marketing collateral, and brand visuals for a
+            growing cosmetics label — balancing aesthetic appeal with
+            production and print constraints.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Packaging</span>
+          <span class="tag">Cosmetics</span>
+          <span class="tag">Print</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">May 2019 — Jul 2019<br /><span style="opacity:0.4;font-size:0.72rem;">3 mos</span></div>
+        <div>
+          <div class="exp-company">Reliance Retail</div>
+          <div class="exp-role">Design Intern · Greater Delhi Area</div>
+          <div class="exp-desc">
+            Assisted the in-house design team on retail communication and
+            in-store visual merchandising materials across formats.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Retail</span>
+          <span class="tag">Visual Merch</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Jan 2019 — Apr 2019<br /><span style="opacity:0.4;font-size:0.72rem;">4 mos</span></div>
+        <div>
+          <div class="exp-company">Satyapaul</div>
+          <div class="exp-role">Design Intern · Greater Delhi Area</div>
+          <div class="exp-desc">
+            Gained early experience in fashion and luxury brand aesthetics,
+            supporting the creative team with visual assets and print collateral
+            for one of India's iconic designer labels.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Fashion</span>
+          <span class="tag">Luxury</span>
+          <span class="tag">Print</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">Skills &amp; tools</div>
+    <h2 class="section-title reveal reveal-delay-1">The craft<br />behind the <em>work.</em></h2>
+    <div class="skills-layout">
+      <p class="skills-intro reveal reveal-delay-2">
+        My toolkit spans the full creative lifecycle — from initial
+        <strong>conceptual sketching</strong> through visual execution to
+        <strong>production-ready</strong> delivery. I work fluidly across
+        brand, print, and digital disciplines.
+      </p>
+      <div class="skills-groups reveal reveal-delay-2">
+        <div>
+          <div class="skill-group-title">Design disciplines</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Brand Identity</span>
+            <span class="skill-pill">B2C Product Branding</span>
+            <span class="skill-pill">Visual Strategy</span>
+            <span class="skill-pill">Art Direction</span>
+            <span class="skill-pill">Typography</span>
+            <span class="skill-pill">Packaging Design</span>
+            <span class="skill-pill">Editorial Layout</span>
+            <span class="skill-pill">Social Media Design</span>
+            <span class="skill-pill">Campaign Design</span>
+            <span class="skill-pill">Presentation Design</span>
+            <span class="skill-pill">Data Visualisation</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Software &amp; tools</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Adobe Illustrator</span>
+            <span class="skill-pill">Photoshop</span>
+            <span class="skill-pill">InDesign</span>
+            <span class="skill-pill">After Effects</span>
+            <span class="skill-pill">PowerPoint</span>
+            <span class="skill-pill">Canva Pro</span>
+            <span class="skill-pill">Procreate</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Soft skills</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Client Presentation</span>
+            <span class="skill-pill">Project Management</span>
+            <span class="skill-pill">Creative Direction</span>
+            <span class="skill-pill">Social Media Management</span>
+            <span class="skill-pill">Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- BRANDS -->
+<section id="brands" style="padding: 2rem 5vw;">
+  <div class="container">
+    <div class="section-label reveal">Brands I've worked with</div>
+    <div class="reveal reveal-delay-1" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2.5rem 3.5rem;margin-top:2rem;padding:2rem 2.5rem;border:0.5px solid var(--rule);">
+
+      <!-- LEK -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="100" height="44" viewBox="0 0 100 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="36" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#1A1814">L</text>
+          <text x="30" y="36" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#1A1814">E</text>
+          <polygon points="62,4 80,22 62,40" fill="#3CB043"/>
+          <text x="62" y="36" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#1A1814">K</text>
+        </svg>
+        <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);">L.E.K. Consulting</span>
+      </div>
+
+      <!-- FableStreet -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="170" height="44" viewBox="0 0 170 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="32" font-family="Georgia,serif" font-size="23" font-weight="400" fill="#1A1814" letter-spacing="1">Fable</text>
+          <text x="88" y="32" font-family="Georgia,serif" font-size="23" font-weight="700" fill="#1A1814" letter-spacing="1">Street</text>
+        </svg>
+        <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);">FableStreet</span>
+      </div>
+
+      <!-- Pink Fort -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="148" height="44" viewBox="0 0 148 44" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="22" r="13" fill="#E8729A" opacity="0.2"/>
+          <circle cx="16" cy="22" r="7" fill="#E8729A"/>
+          <text x="36" y="31" font-family="Georgia,serif" font-size="21" font-weight="400" fill="#1A1814">Pink Fort</text>
+        </svg>
+        <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);">Pink Fort</span>
+      </div>
+
+      <!-- Belora -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="150" height="44" viewBox="0 0 150 44" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="32" font-family="Georgia,serif" font-size="25" font-style="italic" font-weight="400" fill="#1A1814" letter-spacing="2">B&#233;lora</text>
+          <text x="98" y="34" font-family="Georgia,serif" font-size="12" font-weight="300" fill="#6B6660" letter-spacing="3">PARIS</text>
+        </svg>
+        <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);">Belora Cosmetics</span>
+      </div>
+
+      <!-- Reliance Retail -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="155" height="44" viewBox="0 0 155 44" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="34" height="36" rx="3" fill="#0047AB" opacity="0.1"/>
+          <text x="7" y="30" font-family="Arial,sans-serif" font-size="20" font-weight="900" fill="#0047AB">R</text>
+          <text x="42" y="22" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#1A1814" letter-spacing="0.5">RELIANCE</text>
+          <text x="42" y="37" font-family="Arial,sans-serif" font-size="11" font-weight="400" fill="#6B6660" letter-spacing="2">RETAIL</text>
+        </svg>
+        <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);">Reliance Retail</span>
+      </div>
+
+      <!-- Satyapaul -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="134" height="44" viewBox="0 0 134 44" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="22" x2="130" y2="22" stroke="#C17D52" stroke-width="0.5"/>
+          <text x="67" y="20" font-family="Georgia,serif" font-size="13" font-weight="400" fill="#1A1814" letter-spacing="4" text-anchor="middle">SATYA</text>
+          <text x="67" y="36" font-family="Georgia,serif" font-size="13" font-weight="400" fill="#1A1814" letter-spacing="4" text-anchor="middle">PAUL</text>
+        </svg>
+        <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);">Satyapaul</span>
+      </div>
+
+    </div>TYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pragya Joshi — Lead Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F4EF;
+    --ink: #1A1814;
+    --ink-light: #6B6660;
+    --accent: #C17D52;
+    --accent-pale: #EEE0D3;
+    --rule: #DDD8D0;
+    --serif: 'Cormorant Garant', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5vw;
+    background: rgba(247, 244, 239, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-color: var(--rule); }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 4rem 5vw; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--serif);
+    font-size: clamp(5rem, 14vw, 12rem);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--rule);
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.6;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  h1.hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-role {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 3vw, 2.2rem);
+    font-weight: 300;
+    color: var(--ink-light);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--ink);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+  }
+  .hero-cta:hover { background: var(--ink); color: var(--cream); }
+  .hero-cta .arrow { transition: transform 0.25s; }
+  .hero-cta:hover .arrow { transform: translateX(4px); }
+  .hero-meta {
+    position: absolute;
+    right: 5vw;
+    bottom: 3rem;
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    line-height: 2;
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--rule);
+    margin: 0 5vw;
+    width: calc(100% - 10vw);
+  }
+
+  /* ABOUT */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  h2.section-title em { font-style: italic; color: var(--accent); }
+  .about-body p {
+    font-size: 1.05rem;
+    color: #3D3A35;
+    line-height: 1.9;
+    margin-bottom: 0.75rem;
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .stat-item {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+  }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+  }
+  .about-aside {
+    padding-top: 0.5rem;
+  }
+  .profile-visual {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--accent-pale);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .availability {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    color: var(--ink-light);
+  }
+  .avail-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5DB075;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--ink); color: var(--cream); }
+  #experience .section-label { color: var(--accent); }
+  #experience .section-label::before { background: var(--accent); }
+  #experience h2.section-title { color: var(--cream); }
+  .exp-list { margin-top: 2rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr auto;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(247,244,239,0.12);
+    align-items: start;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .exp-item:last-child { border-bottom: 1px solid rgba(247,244,239,0.12); }
+  .exp-period {
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.45);
+    letter-spacing: 0.05em;
+    padding-top: 0.2rem;
+  }
+  .exp-company {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.35rem;
+    line-height: 1.2;
+  }
+  .exp-role {
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.85rem;
+  }
+  .exp-desc {
+    font-size: 0.9rem;
+    color: rgba(247,244,239,0.6);
+    line-height: 1.8;
+    max-width: 480px;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(247,244,239,0.2);
+    color: rgba(247,244,239,0.5);
+    white-space: nowrap;
+  }
+
+  /* PROJECTS */
+  #projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .project-card {
+    cursor: pointer;
+    group: project;
+  }
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: var(--accent-pale);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+  .project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; background:#f7f4ef;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .project-card:hover .project-thumb img { transform: scale(1.04); }
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.4rem;
+  }
+  .project-cat {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .project-year {
+    font-size: 0.75rem;
+    color: var(--ink-light);
+  }
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+
+  /* SKILLS */
+  #skills .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    align-items: start;
+  }
+  .skills-intro {
+    font-size: 1.05rem;
+    color: #3D3A35;
+    line-height: 1.9;
+  }
+  .skills-intro strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .skills-groups { display: flex; flex-direction: column; gap: 1.5rem; }
+  .skill-group-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .skill-pill {
+    font-size: 0.82rem;
+    padding: 0.45rem 1.1rem;
+    background: white;
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .skill-pill:hover { border-color: var(--accent); background: var(--accent-pale); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem 5vw 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    border-bottom: 1px solid rgba(247,244,239,0.12);
+    padding-bottom: 3rem;
+    margin-bottom: 1rem;
+  }
+  .footer-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 300;
+    line-height: 1.25;
+  }
+  .footer-tagline em { font-style: italic; color: var(--accent); }
+  .footer-contact { text-align: right; }
+  .footer-contact a {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(247,244,239,0.3);
+    padding-bottom: 0.25rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .footer-contact a:hover { color: var(--accent); border-color: var(--accent); }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: rgba(247,244,239,0.35);
+  }
+
+  /* REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .reveal.hidden {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    #about .about-grid { grid-template-columns: 1fr; }
+    .about-aside { display: none; }
+    #projects .projects-grid { grid-template-columns: 1fr; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .exp-tags { display: none; }
+    #skills .skills-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .footer-contact { text-align: left; }
+    .nav-links { display: none; }
+    .hero-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">Pragya Joshi</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#projects">Work</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">Design</div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">Lead Designer &amp; Visual Strategist</div>
+    <h1 class="hero-name">Pragya <em>Joshi</em></h1>
+    <p class="hero-role">Crafting identities, experiences &amp; moments that endure.</p>
+    <a class="hero-cta" href="#projects">View selected work <span class="arrow">→</span></a>
+  </div>
+  <div class="hero-meta">
+    Based in Gurugram, India<br />
+    Open to opportunities
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-aside reveal">
+      <div class="profile-visual"><img src="assets/img_01.jpg" alt="Pragya Joshi" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" /></div>
+      <div class="availability">
+        <span class="avail-dot"></span>
+        Available for freelance projects
+      </div>
+    </div>
+    <div class="about-body">
+      <div class="section-label reveal">About me</div>
+      <h2 class="section-title reveal reveal-delay-1">A designer who thinks<br /><em>before</em> drawing.</h2>
+      <p class="reveal reveal-delay-2">
+        I'm a multidisciplinary creative designer with over 6 years of experience building
+        brands, campaigns, and digital products for organisations ranging from early-stage
+        startups to established enterprises across India and beyond.
+      </p>
+      <p class="reveal reveal-delay-2">
+        My work lives at the intersection of visual craft and strategic thinking — every
+        colour choice, typeface, and layout decision is grounded in a clear communication
+        objective. I believe great design should feel inevitable.
+      </p>
+      <div class="about-stats reveal reveal-delay-3">
+        <div class="stat-item">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Organisations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Industries</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Internships</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label reveal">Work experience</div>
+    <h2 class="section-title reveal reveal-delay-1">Where I've shaped<br /><em>ideas into reality.</em></h2>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Feb 2023 — Present<br /><span style="opacity:0.4;font-size:0.72rem;">3 yrs 2 mos · Promoted</span></div>
+        <div>
+          <div class="exp-company">L.E.K. Consulting</div>
+          <div class="exp-role">Lead Graphic Designer (promoted from Graphic Designer) · Gurugram, Hybrid</div>
+          <div class="exp-desc">
+            Delivered 150+ design requests and 644 pages in five months — spanning multilingual publications, financial pitch decks, Executive Insights, and global event campaigns. Built proprietary social media templates that cut turnaround time by ~90%, managed all brand social design independently, and led workflow calls in the manager's absence. Mentored interns and junior designers, performed 40+ quality checks, and supported cross-team collaboration with LCN and KM teams.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Promoted</span>
+          <span class="tag">Publications</span>
+          <span class="tag">Social Media</span>
+          <span class="tag">Team Lead</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Aug 2021 — Feb 2023<br /><span style="opacity:0.4;font-size:0.72rem;">1 yr 7 mos</span></div>
+        <div>
+          <div class="exp-company">FableStreet</div>
+          <div class="exp-role">Graphic Designer · Gurugram, Full-time</div>
+          <div class="exp-desc">
+            Shaped the visual identity of a leading D2C women's workwear brand —
+            spanning digital campaigns, e-commerce assets, social media, and
+            seasonal lookbook design.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">D2C</span>
+          <span class="tag">Digital Campaigns</span>
+          <span class="tag">Social Media</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Sep 2020 — Aug 2021<br /><span style="opacity:0.4;font-size:0.72rem;">1 yr</span></div>
+        <div>
+          <div class="exp-company">Belora Cosmetics</div>
+          <div class="exp-role">Graphic Designer · Gurugram, Full-time</div>
+          <div class="exp-desc">
+            Developed packaging, marketing collateral, and brand visuals for a
+            growing cosmetics label — balancing aesthetic appeal with
+            production and print constraints.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Packaging</span>
+          <span class="tag">Cosmetics</span>
+          <span class="tag">Print</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">May 2019 — Jul 2019<br /><span style="opacity:0.4;font-size:0.72rem;">3 mos</span></div>
+        <div>
+          <div class="exp-company">Reliance Retail</div>
+          <div class="exp-role">Design Intern · Greater Delhi Area</div>
+          <div class="exp-desc">
+            Assisted the in-house design team on retail communication and
+            in-store visual merchandising materials across formats.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Retail</span>
+          <span class="tag">Visual Merch</span>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-period">Jan 2019 — Apr 2019<br /><span style="opacity:0.4;font-size:0.72rem;">4 mos</span></div>
+        <div>
+          <div class="exp-company">Satyapaul</div>
+          <div class="exp-role">Design Intern · Greater Delhi Area</div>
+          <div class="exp-desc">
+            Gained early experience in fashion and luxury brand aesthetics,
+            supporting the creative team with visual assets and print collateral
+            for one of India's iconic designer labels.
+          </div>
+        </div>
+        <div class="exp-tags">
+          <span class="tag">Fashion</span>
+          <span class="tag">Luxury</span>
+          <span class="tag">Print</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">Skills &amp; tools</div>
+    <h2 class="section-title reveal reveal-delay-1">The craft<br />behind the <em>work.</em></h2>
+    <div class="skills-layout">
+      <p class="skills-intro reveal reveal-delay-2">
+        My toolkit spans the full creative lifecycle — from initial
+        <strong>conceptual sketching</strong> through visual execution to
+        <strong>production-ready</strong> delivery. I work fluidly across
+        brand, print, and digital disciplines.
+      </p>
+      <div class="skills-groups reveal reveal-delay-2">
+        <div>
+          <div class="skill-group-title">Design disciplines</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Brand Identity</span>
+            <span class="skill-pill">B2C Product Branding</span>
+            <span class="skill-pill">Visual Strategy</span>
+            <span class="skill-pill">Art Direction</span>
+            <span class="skill-pill">Typography</span>
+            <span class="skill-pill">Packaging Design</span>
+            <span class="skill-pill">Editorial Layout</span>
+            <span class="skill-pill">Social Media Design</span>
+            <span class="skill-pill">Campaign Design</span>
+            <span class="skill-pill">Presentation Design</span>
+            <span class="skill-pill">Data Visualisation</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Software &amp; tools</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Adobe Illustrator</span>
+            <span class="skill-pill">Photoshop</span>
+            <span class="skill-pill">InDesign</span>
+            <span class="skill-pill">After Effects</span>
+            <span class="skill-pill">PowerPoint</span>
+            <span class="skill-pill">Canva Pro</span>
+            <span class="skill-pill">Procreate</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-title">Soft skills</div>
+          <div class="skill-pills">
+            <span class="skill-pill">Client Presentation</span>
+            <span class="skill-pill">Project Management</span>
+            <span class="skill-pill">Creative Direction</span>
+            <span class="skill-pill">Social Media Management</span>
+            <span class="skill-pill">Mentoring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- BRANDS -->
+<section id="brands" style="padding: 2rem 5vw;">
+  <div class="container">
+    <div class="section-label reveal">Brands I've worked with</div>
+    <div class="reveal reveal-delay-1" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:3rem;margin-top:3rem;padding:2.5rem;border:0.5px solid var(--rule);">
+
+      <!-- LEK -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="80" height="40" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="2" y="32" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#1A1814" letter-spacing="-1">L</text>
+          <text x="26" y="32" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#1A1814" letter-spacing="-1">E</text>
+          <polygon points="54,4 70,20 54,36" fill="#3CB043"/>
+          <text x="54" y="32" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#1A1814" letter-spacing="-1">K</text>
+        </svg>
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);">L.E.K. Consulting</span>
+      </div>
+
+      <!-- FableStreet -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="130" height="40" viewBox="0 0 130 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Georgia,serif" font-size="20" font-weight="400" fill="#1A1814" letter-spacing="1">Fable</text>
+          <text x="67" y="28" font-family="Georgia,serif" font-size="20" font-weight="700" fill="#1A1814" letter-spacing="1">Street</text>
+        </svg>
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);">FableStreet</span>
+      </div>
+
+      <!-- Pink Fort -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="110" height="40" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="20" r="10" fill="#E8729A" opacity="0.3"/>
+          <circle cx="14" cy="20" r="6" fill="#E8729A"/>
+          <text x="30" y="28" font-family="Georgia,serif" font-size="18" font-weight="400" fill="#1A1814">Pink Fort</text>
+        </svg>
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);">Pink Fort</span>
+      </div>
+
+      <!-- Belora -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="110" height="40" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="4" y="28" font-family="Georgia,serif" font-size="20" font-style="italic" font-weight="400" fill="#1A1814" letter-spacing="2">Bélora</text>
+          <text x="74" y="30" font-family="Georgia,serif" font-size="11" font-weight="300" fill="#6B6660" letter-spacing="2">PARIS</text>
+        </svg>
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);">Belora Cosmetics</span>
+      </div>
+
+      <!-- Reliance Retail -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="8" width="24" height="24" rx="2" fill="#0047AB" opacity="0.12"/>
+          <text x="4" y="27" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#0047AB">R</text>
+          <text x="30" y="22" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#1A1814" letter-spacing="0.5">RELIANCE</text>
+          <text x="30" y="35" font-family="Arial,sans-serif" font-size="10" font-weight="400" fill="#6B6660" letter-spacing="1">RETAIL</text>
+        </svg>
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);">Reliance Retail</span>
+      </div>
+
+      <!-- Satyapaul -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+        <svg width="110" height="40" viewBox="0 0 110 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="20" x2="106" y2="20" stroke="#C17D52" stroke-width="0.5"/>
+          <text x="55" y="17" font-family="Georgia,serif" font-size="13" font-weight="400" fill="#1A1814" letter-spacing="3" text-anchor="middle">SATYA</text>
+          <text x="55" y="32" font-family="Georgia,serif" font-size="13" font-weight="400" fill="#1A1814" letter-spacing="3" text-anchor="middle">PAUL</text>
+        </svg>
+        <span style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-light);">Satyapaul</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label reveal">Selected projects</div>
+    <h2 class="section-title reveal reveal-delay-1">Work at<br /><em>L.E.K. Consulting</em></h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_02.png" alt="L.E.K. European Summer Events" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Social Media</span>
+          <span class="project-year">L.E.K. Consulting</span>
+        </div>
+        <div class="project-name">European Summer Events Campaign</div>
+        <div class="project-desc">Social media graphics for L.E.K.'s European student recruitment events — combining brand photography, bold typography, and clear event information.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_03.jpg" alt="Health Club Membership Stat" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Infographic</span>
+          <span class="project-year">L.E.K. Consulting</span>
+        </div>
+        <div class="project-name">Health &amp; Wellness Insight Graphics</div>
+        <div class="project-desc">Data-led social graphics translating complex consulting research into visually engaging stat cards for LinkedIn audiences.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_04.png" alt="Discover Life Sciences Consulting" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Event Banner</span>
+          <span class="project-year">L.E.K. Consulting</span>
+        </div>
+        <div class="project-name">Life Sciences Event — LinkedIn Banner</div>
+        <div class="project-desc">Landscape LinkedIn banner for a flagship Life Sciences consulting event, designed for high visual impact in feed and cover contexts.</div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_05.png" alt="SaaS Pricing Social" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Social Media</span>
+          <span class="project-year">L.E.K. Consulting</span>
+        </div>
+        <div class="project-name">SaaS Pricing Campaign</div>
+        <div class="project-desc">Dark-mode editorial social graphic for a thought leadership piece on the future of SaaS pricing — balancing drama with brand consistency.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_06.png" alt="HBI Paris Event" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Event Banner</span>
+          <span class="project-year">L.E.K. Consulting</span>
+        </div>
+        <div class="project-name">L.E.K. × HBI 2025 — Paris</div>
+        <div class="project-desc">Conference co-branding and event promotion banner for L.E.K.'s presence at the Healthcare Business International summit in Paris.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_07.png" alt="AI In-Store Webinar" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Webinar Promotion</span>
+          <span class="project-year">L.E.K. Consulting</span>
+        </div>
+        <div class="project-name">AI In-Store Webinar Series</div>
+        <div class="project-desc">Webinar promotional graphic combining product photography and bold editorial layout to drive registrations for a thought leadership event.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FABLESTREET PROJECTS -->
+<section id="fablestreet-projects">
+  <div class="container">
+    <div class="section-label reveal">Selected projects</div>
+    <h2 class="section-title reveal reveal-delay-1">Work at<br /><em>FableStreet</em></h2>
+    <div class="projects-grid" style="margin-top: 2rem;">
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_08.jpg" alt="Valentine Campaign FableStreet" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Campaign</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Valentine's Day Campaign</div>
+        <div class="project-desc">Social campaign creative for FableStreet's Valentine edit — warm product styling with seasonal copy for gifting and self-love occasions.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_09.jpg" alt="Spring Dress FableStreet" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Spring Tiered Dress — Editorial Layout</div>
+        <div class="project-desc">Multi-frame editorial layout blending campaign photography, detail shots, and storytelling copy for a seasonal dress launch.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_10.jpg" alt="Modern Luxe Edit Banner" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Website Banner</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Modern Luxe Edit — Hero Banner</div>
+        <div class="project-desc">Full-width homepage banner for the satin collection launch — cinematic composition, minimal type, and strong model direction.</div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_11.jpg" alt="Shibori Kaftan Social" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Social Media</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Shibori Kaftan — Engagement Post</div>
+        <div class="project-desc">Interactive social post using a framed UI concept to drive engagement — creative device design layered over product photography.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_12.jpg" alt="The A List FableStreet" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Social Media</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">The A List — Editorial Social</div>
+        <div class="project-desc">High-fashion editorial social graphic with bold serif type and a split-frame product composition for a curated style guide.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_13.jpg" alt="Best of 2021" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Campaign</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Best of 2021 — Year in Review</div>
+        <div class="project-desc">Bold year-end campaign social with vibrant colour blocking, contrasting fashion photography, and punchy copy.</div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_14.jpg" alt="Bestsellers 2022" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Campaign</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Bestsellers 2022 — Social Campaign</div>
+        <div class="project-desc">Bestseller highlight campaign featuring editorial photography, clean layout, and persuasive FOMO-driven copy.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_15.jpg" alt="Summer Obsession" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Current Summer Obsession</div>
+        <div class="project-desc">Seasonal social graphic with dreamy blue colour palette, textural background elements and mixed font styling.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_16.jpg" alt="Tops Collection" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">FableStreet</span>
+        </div>
+        <div class="project-name">Tops Edit — Social Creative</div>
+        <div class="project-desc">Clean product social with a fresh green palette, confident model composition and playful typographic headline.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BELORA PROJECTS -->
+<section id="belora-projects">
+  <div class="container">
+    <div class="section-label reveal">Selected projects</div>
+    <h2 class="section-title reveal reveal-delay-1">Work at<br /><em>Belora Cosmetics</em></h2>
+    <div class="projects-grid" style="margin-top: 2rem;">
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_17.png" alt="Belora Prime Naturelle" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">Belora Paris</span>
+        </div>
+        <div class="project-name">Prime Naturelle — Launch Campaign</div>
+        <div class="project-desc">Vibrant product social for the Vitamin C & Hyaluronic Acid hydrating primer — bold colour, styled flat-lay photography and punchy copy.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_18.png" alt="Belora Kohl Pencil Repeat Pattern" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">Belora Paris</span>
+        </div>
+        <div class="project-name">Kohl Pencil — Pattern Visual</div>
+        <div class="project-desc">Diagonal repeat layout of the signature kohl pencil against a soft blush background — creating a bold editorial texture for social feeds.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_19.png" alt="Belora Eyeliner Social" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">Belora Paris</span>
+        </div>
+        <div class="project-name">Long-Stay Eyeliner — Social Graphic</div>
+        <div class="project-desc">Playful product visual pairing clean product photography with hand-drawn ink swipe illustration and a conversational tagline.</div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <img src="assets/img_20.png" alt="Belora Hydrating Kajal" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Campaign</span>
+          <span class="project-year">Belora Paris</span>
+        </div>
+        <div class="project-name">First-in-the-World Hydrating Kajal</div>
+        <div class="project-desc">Hero campaign visual for Belora's flagship kajal launch — dramatic Paris backdrop, strong type hierarchy, and cinematic compositing.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-thumb">
+          <img src="assets/img_21.png" alt="Belora Illuminating Moisturizer styled" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Product Social</span>
+          <span class="project-year">Belora Paris</span>
+        </div>
+        <div class="project-name">Illuminating Moisturizer — Styled Shot</div>
+        <div class="project-desc">Luxury product styling with fruit props and stone textures — communicating the natural nano gold & AHA formulation with editorial finesse.</div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-thumb">
+          <img src="assets/img_22.png" alt="Belora Illuminating Moisturizer clouds" />
+        </div>
+        <div class="project-meta">
+          <span class="project-cat">Campaign</span>
+          <span class="project-year">Belora Paris</span>
+        </div>
+        <div class="project-name">Illuminating Moisturizer — Texture Campaign</div>
+        <div class="project-desc">"Light as clouds" — a sky composite campaign graphic emphasising the feather-light texture of the moisturizer with bold typographic play.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-tagline reveal">
+      Let's make something<br /><em>worth remembering.</em>
+    </div>
+    <div class="footer-contact reveal">
+      <a href="mailto:pragyaj1816@gmail.com">pragyaj1816@gmail.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <span>© 2026 Pragya Joshi</span>
+    <span>Lead Designer · Gurugram</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach(el => el.classList.add('hidden'));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.remove('hidden');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => 
